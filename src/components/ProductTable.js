@@ -3,7 +3,6 @@ import ProductRow from './ProductRow.js'
 
 class ProductTable extends React.Component {
     render() {
-        const products = this.props.products.slice()
         return(
             <table>
                 <thead>
@@ -14,7 +13,7 @@ class ProductTable extends React.Component {
                 </thead>
                 <tbody>
                     {
-                        products.map(product => {
+                        this.props.products.map(product => {
                             return <ProductRow key={product.id} {...product} />
                         })
                     }

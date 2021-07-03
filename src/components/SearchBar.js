@@ -6,7 +6,7 @@ class SearchBar extends React.Component {
             <div>
                 <label>
                     Search
-                    <input type='text'></input>
+                    <input type='search' name='search' value={this.props.queryValue} onChange={(event) => {this.props.queryHandler(event.target.value)}}></input>
                 </label>
                 <label>
                     <input type='checkbox'></input>
