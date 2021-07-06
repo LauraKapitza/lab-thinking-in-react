@@ -5,14 +5,21 @@ import ProductTable from './ProductTable.js';
 class FilterableProductTable extends React.Component {
     state = {
         products: this.props.products,
-        query: ''
+        query: '',
+        inStock: false
     }
 
     handleQuery = (event) => {
         console.log(event)
-        this.setState({
-            query: event
-        })
+        if(event.type === 'checkbox') {
+            this.setState(prevState => ({
+                inStock: !prevState.inStock
+              }));
+        } else if (event.type === 'search') {
+            this.setState({
+                query: event.value
+            })
+        }
     }
 
     render() {
@@ -20,8 +27,9 @@ class FilterableProductTable extends React.Component {
         return (
         <div>
             <h1>IronStore</h1>
-            <SearchBar queryValue={this.state.query} queryHandler={this.handleQuery}/>
-            <ProductTable products={filteredProducts} />
+            <SearchBar queryValue={this.state.query} inStockValue={this.state.inStock} queryHandler={this.handleQuery}/>
+            {this.state.inStock && <ProductTable products={filteredProducts.filter(element => element.stocked === true )} /> }    
+            {!this.state.inStock && <ProductTable products={filteredProducts} /> }
         </div>
         )
     }

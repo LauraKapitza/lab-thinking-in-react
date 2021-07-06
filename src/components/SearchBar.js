@@ -6,10 +6,10 @@ class SearchBar extends React.Component {
             <div>
                 <label>
                     Search
-                    <input type='search' name='search' value={this.props.queryValue} onChange={(event) => {this.props.queryHandler(event.target.value)}}></input>
+                    <input type='search' name='search' value={this.props.queryValue} onChange={(event) => {this.props.queryHandler(event.target)}}></input>
                 </label>
                 <label>
-                    <input type='checkbox'></input>
+                    <input type='checkbox' value={this.props.inStockValue} onChange={event => {this.props.queryHandler(event.target)}}></input>
                     Only show products on stock
                 </label>
 
